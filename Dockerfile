@@ -36,5 +36,7 @@ RUN mvn -X allure:report
 # Expose the Allure report port
 EXPOSE 8080
 
+WORKDIR /app/target/site/allure-maven-plugin
+
 # Command to start Allure report server
 CMD ["python3", "-m", "http.server", "8080"]
