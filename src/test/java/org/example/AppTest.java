@@ -6,6 +6,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Issue;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+
 public class AppTest {
 
     private static final String APP1_NAME = "App1";
@@ -26,13 +33,22 @@ public class AppTest {
     }
 
     @Test
-    @Tag("tag1")
+    @Issue("DEV-123456")
+    @Tag("tag1") @Tag("Merchant Hat")
+    @Epic("Deferred")
+    @Story("Advanced support for bdd annotations")
+    @Feature("Expire Split Token")
     void testConstructor() {
         Assertions.assertEquals(APP1_NAME, app.getName());
     }
 
     @Test
-    @Tag("tag2")
+    @Issue("DEV-123456")
+    @Tag("tag2") @Tag("Risk")
+    @Epic("Deferred")
+    @Feature("Getting the Authorization")
+    @Severity(SeverityLevel.CRITICAL)
+    @Story("Base support for bdd annotations")
     void testRunning() {
         Assertions.assertDoesNotThrow(() -> {
             app.run();
@@ -42,7 +58,12 @@ public class AppTest {
     }
 
     @Test
-    @Tag("tag1")
+    @Tag("tag1") @Tag("plataform")
+    @Epic("Instant")
+    @Feature("Not Sufficient Funds")
+    @Story("Base support for bdd annotations")
+    @Story("Advanced support for bdd annotations")
+    @Severity(SeverityLevel.BLOCKER)
     void testRunningInvalidTest() {
         Assertions.assertThrows(IllegalStateException.class, () -> {
             app.shutdown();

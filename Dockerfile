@@ -31,7 +31,7 @@ COPY . /app
 RUN mvn clean install
 
 # Generate Allure report
-RUN mvn -X allure:report
+RUN mvn allure:report
 
 # Expose the Allure report port
 EXPOSE 8080
