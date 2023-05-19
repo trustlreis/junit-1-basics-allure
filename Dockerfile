@@ -12,7 +12,7 @@ RUN apt-get install -y maven
 # Install Python and its dependencies
 RUN apt-get install -y python3 python3-pip
 RUN pip3 install --upgrade pip
-RUN pip3 install setuptools
+RUN pip3 install setuptools lxml allure-python-commons
 
 # Install Allure
 RUN apt-get install -y curl
@@ -27,16 +27,13 @@ WORKDIR /app
 # Copy the project files to the container
 COPY . /app
 
-# Build the project
-RUN mvn clean install
-
-# Generate Allure report
-RUN mvn allure:report
+# Build the project and the documentation site
+RUN mvn clean install site
 
 # Expose the Allure report port
 EXPOSE 8080
 
-WORKDIR /app/target/site/allure-maven-plugin
+WORKDIR /app/target/site
 
 # Command to start Allure report server
 CMD ["python3", "-m", "http.server", "8080"]

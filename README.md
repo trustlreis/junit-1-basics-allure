@@ -12,5 +12,6 @@ docker run -p 8080:8080 -d --name junit-1-basics-allure junit-1-basics-allure
 * Open on your local browser
 
 ```
-http://localhost:8080/target/site/allure-maven-plugin
+http://localhost:8080/
 ```
+
